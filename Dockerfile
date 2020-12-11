@@ -12,11 +12,11 @@ RUN dnf -y --disableplugin=subscription-manager module enable ruby:2.5 && \
       && \
     dnf clean all
 
-ENV WORKDIR /opt/amazon-collector/
+ENV WORKDIR /opt/google-collector/
 WORKDIR $WORKDIR
 
-COPY docker-assets/librdkafka-1.5.0.tar.gz /tmp/librdkafka.tar.gz
-RUN cd /tmp && tar -xf /tmp/librdkafka.tar.gz && cd librdkafka-1.5.0 && \
+COPY docker-assets/librdkafka-1.5.2.tar.gz /tmp/librdkafka.tar.gz
+RUN cd /tmp && tar -xf /tmp/librdkafka.tar.gz && cd librdkafka-1.5.2 && \
     ./configure --prefix=/usr && \
     make -j2 && make install && \
     rm -rf /tmp/librdkafka*
@@ -33,4 +33,4 @@ COPY . $WORKDIR
 RUN chgrp -R 0 $WORKDIR && \
     chmod -R g=u $WORKDIR
 
-ENTRYPOINT ["bin/amazon-collector"]
+ENTRYPOINT ["bin/google-operations"]
