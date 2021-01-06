@@ -1,8 +1,8 @@
 # Topological Inventory Google
 
 [![Build Status](https://travis-ci.com/RedHatInsights/topological_inventory-google.svg?branch=master)](https://travis-ci.com/RedHatInsights/topological_inventory-google)
-[![Maintainability](https://api.codeclimate.com/v1/badges/fd49345c28fa632ba2c6/maintainability)](https://codeclimate.com/github/RedHatInsights/topological_inventory-google/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/fd49345c28fa632ba2c6/test_coverage)](https://codeclimate.com/github/RedHatInsights/topological_inventory-google/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/289cfe1ddbfe34635b82/maintainability)](https://codeclimate.com/github/RedHatInsights/topological_inventory-google/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/289cfe1ddbfe34635b82/test_coverage)](https://codeclimate.com/github/RedHatInsights/topological_inventory-google/test_coverage)
 [![security](https://hakiri.io/github/RedHatInsights/topological_inventory-google/master.svg)](https://hakiri.io/github/RedHatInsights/topological_inventory-google/master)
 
 ## License
