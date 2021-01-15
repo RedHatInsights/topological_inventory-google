@@ -6,6 +6,7 @@ require File.join(Bundler::Plugin.index.load_paths("bundler-inject")[0], "bundle
 gem "activesupport", '~> 5.2.4.3'
 gem "cloudwatchlogger", "~> 0.2.1"
 gem "concurrent-ruby"
+gem "fog-google", "~> 1.12"
 gem "manageiq-loggers", "~> 0.5.0"
 gem "manageiq-messaging", "~> 1.0.0"
 gem "more_core_extensions"
