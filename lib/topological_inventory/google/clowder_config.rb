@@ -8,8 +8,8 @@ module TopologicalInventory
 
       def self.instance
         @instance ||= {}.tap do |options|
-          if ENV["CLOWDER_ENABLED"].present?
-            config                        = ::LoadedConfig # TODO not an ideal name
+          if AppCommonRuby::Config.clowder_enabled?
+            config                        = AppCommonRuby::Config.load
             options["metricsPort"]        = config.metricsPort
             options["metricsPath"]        = config.metricsPath
             broker = config.kafka.brokers.first

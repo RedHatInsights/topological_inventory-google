@@ -20,8 +20,6 @@ objects:
         podSpec:
           image: ${IMAGE}:${IMAGE_TAG}
           env:
-          - name: CLOWDER_ENABLED
-            value: ${CLOWDER_ENABLED}
           - name: LOG_LEVEL
             value: ${LOG_LEVEL}
           - name: METRICS_PORT
@@ -57,10 +55,6 @@ objects:
           partitions: 3
           replicas: 3
 parameters:
-- description: Clowder enabled flag
-  displayName: Clowder enabled
-  name: CLOWDER_ENABLED
-  value: ''
 - name: CPU_LIMIT
   value: 200m
 - name: CPU_REQUEST
