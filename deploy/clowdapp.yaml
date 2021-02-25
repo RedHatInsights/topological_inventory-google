@@ -32,21 +32,21 @@ objects:
             value: ${SOURCES_SCHEME}
           - name: UPDATE_SOURCES_VIA_API
             value: ${UPDATE_SOURCES_VIA_API}
-        livenessProbe:
-          exec:
-            command:
-              - bash
-              - -c
-              - find /tmp -mmin -60 2>/dev/null | grep healthy
-          initialDelaySeconds: 1800
-          periodSeconds: 300
-        resources:
-          limits:
-            cpu: ${CPU_LIMIT}
-            memory: ${MEMORY_LIMIT}
-          requests:
-            cpu: ${CPU_REQUEST}
-            memory: ${MEMORY_REQUEST}
+          livenessProbe:
+            exec:
+              command:
+                - bash
+                - -c
+                - find /tmp -mmin -60 2>/dev/null | grep healthy
+            initialDelaySeconds: 1800
+            periodSeconds: 300
+          resources:
+            limits:
+              cpu: ${CPU_LIMIT}
+              memory: ${MEMORY_LIMIT}
+            requests:
+              cpu: ${CPU_REQUEST}
+              memory: ${MEMORY_REQUEST}
       kafkaTopics:
         - topicName: platform.sources.status
           partitions: 3

@@ -8,10 +8,11 @@ module TopologicalInventory
 
       def self.instance
         @instance ||= {}.tap do |options|
-          if AppCommonRuby::Config.clowder_enabled?
-            config                        = AppCommonRuby::Config.load
-            options["metricsPort"]        = config.metricsPort
-            options["metricsPath"]        = config.metricsPath
+          if ::AppCommonRuby::Config.clowder_enabled?
+            config                        = ::AppCommonRuby::Config.load
+            options["awsAccessKeyId"]     = config.logging.cloudwatch.accessKeyId
+            options["awsRegion"]          = config.logging.cloudwatch.region
+            options["awsSecretAccessKey"] = config.logging.cloudwatch.secretAccessKey
             broker = config.kafka.brokers.first
             options["kafkaHost"] = broker.hostname
             options["kafkaPort"] = broker.port
@@ -22,19 +23,18 @@ module TopologicalInventory
               end
             end
             options["logGroup"]           = config.logging.cloudwatch.logGroup
-            options["awsRegion"]          = config.logging.cloudwatch.region
-            options["awsAccessKeyId"]     = config.logging.cloudwatch.accessKeyId
-            options["awsSecretAccessKey"] = config.logging.cloudwatch.secretAccessKey
-
+            options["metricsPort"]        = config.metricsPort
+            options["metricsPath"]        = config.metricsPath # not supported by PrometheusExporter
           else
-            options["metricsPort"]        = (ENV['METRICS_PORT'] || 9394).to_i
-            options["kafkaBrokers"]       = ["#{ENV['QUEUE_HOST']}:#{ENV['QUEUE_PORT']}"]
-            options["logGroup"]           = 'platform-dev'
-            options["awsRegion"]          = 'us-east-1'
             options["awsAccessKeyId"]     = ENV['CW_AWS_ACCESS_KEY_ID']
+            options["awsRegion"]          = 'us-east-1'
             options["awsSecretAccessKey"] = ENV['CW_AWS_SECRET_ACCESS_KEY']
+            options["kafkaBrokers"]       = ["#{ENV['QUEUE_HOST']}:#{ENV['QUEUE_PORT']}"]
             options["kafkaHost"]         = ENV['QUEUE_HOST'] || 'localhost'
             options["kafkaPort"]         = (ENV['QUEUE_PORT'] || '9092').to_i
+            options["kafkaTopics"]        = {}
+            options["logGroup"]           = 'platform-dev'
+            options["metricsPort"]        = (ENV['METRICS_PORT'] || 9394).to_i
           end
         end
       end
