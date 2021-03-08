@@ -4,7 +4,7 @@
 # Options that must be configured by app owner
 # --------------------------------------------
 APP_NAME="topological-inventory"  # name of app-sre "application" folder this component lives in
-COMPONENT_NAME="topological-inventory-google-operations"  # name of app-sre "resourceTemplate" in deploy.yaml for this component
+COMPONENT_NAME="topo-google"  # name of app-sre "resourceTemplate" in deploy.yaml for this component
 IMAGE="quay.io/cloudservices/topological-inventory-google"
 
 IQE_PLUGINS="topology_inventory"

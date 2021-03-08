@@ -5,7 +5,7 @@ require "bundler/setup"
 require "optimist"
 require "topological_inventory/google/operations/worker"
 require "topological_inventory/google/operations/metrics"
-require "topological_inventory/google/clowder_config"
+require "topological_inventory/providers/common/clowder_config"
 
 def parse_args
   Optimist.options do
@@ -30,11 +30,11 @@ def check_args(args)
 end
 
 args = parse_args
-TopologicalInventory::Google::ClowderConfig.fill_args_operations(args) if ENV['CLOWDER_ENABLED'].present?
-check_args(args)
+if TopologicalInventory::Providers::Common::ClowderConfig.clowder_enabled?
+  TopologicalInventory::Providers::Common::ClowderConfig.fill_args_operations(args)
+end
 
-puts "ARGS_____"
-puts args.inspect
+check_args(args)
 
 SourcesApiClient.configure do |config|
   config.scheme = args[:sources_scheme] || "http"
